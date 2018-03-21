@@ -11,8 +11,8 @@ class ReutersSpider(scrapy.Spider):
     def start_requests(self):
         base_url = 'http://www.reuters.com/resources/archive/us/'
         # years = [2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017]
-        years = [2017]
-
+        years = [2015]
+    
         for year in years:
             url = base_url+str(year)+'.html'
             yield scrapy.Request(url=url, callback=self.parse_year)
