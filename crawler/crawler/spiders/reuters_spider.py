@@ -15,6 +15,7 @@ class ReutersSpider(scrapy.Spider):
 
         for year in years:
             url = base_url+str(year)+'.html'
+            yield url
             yield scrapy.Request(url=url, callback=self.parse_year)
 
     def parse_year(self, response):
@@ -39,12 +40,13 @@ class ReutersSpider(scrapy.Spider):
                                  callback=self.parse_article, \
                                  meta={'item':item})
 
+
     def parse_article(self, response):
         item = response.meta['item']
-        section = response.xpath("//div[contains(@class, 'ArticleHeader_channel')]\
+        section = response.xpath("//div[contains(@class, 'channel_4KD-f')]\
                                  /a/text()").extract_first().replace(" ", "_")
-        title = response.xpath("//h1[contains(@class, 'ArticleHeader_headline')]//text()").extract_first()
-        texts = response.xpath("//div[contains(@class, 'StandardArticleBody')]//text()").extract()
+        title = response.xpath("//h1[contains(@class, 'headline_2zdFM')]//text()").extract_first()
+        texts = response.xpath("//div[contains(@class, 'body_1gnLA')]//text()").extract()
         texts = [i.strip() for i in texts if len(i.strip()) > 0]
         date = item['date']
         direc = date[:4]+"/"+date[4:6]+"/"
@@ -58,3 +60,4 @@ class ReutersSpider(scrapy.Spider):
                       }
             out = json.dumps(article)
             out_file.write(out+"\n")
+
