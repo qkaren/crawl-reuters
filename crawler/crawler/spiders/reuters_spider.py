@@ -2,6 +2,7 @@ import scrapy
 import os
 import json
 import time
+import random
 
 class ReutersSpider(scrapy.Spider):
     name = "reuters"
