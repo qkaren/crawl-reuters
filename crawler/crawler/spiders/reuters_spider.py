@@ -23,10 +23,13 @@ class ReutersSpider(scrapy.Spider):
     def parse_year(self, response):
         days = response.xpath("//p/a[starts-with(@href, \
                               '/resources/archive/us/')]")
-        for day in days:
+#         for day in days:
+            for idx, day in enumerate(days):
             day_url = day.xpath('@href').extract_first()
             date = day_url.split("/")[-1][:-5] # e.g. 20160130
             item = {'date':date}
+            if idx % 5 ==0:
+                time.sleep(random.randint(0,8)) 
             yield scrapy.Request(url=response.urljoin(day_url), \
                                  callback=self.parse_day, meta={'item':item})
 
@@ -38,8 +41,6 @@ class ReutersSpider(scrapy.Spider):
             article_title = article.xpath("text()").extract_first()
             item = response.meta['item']
             item['title'] = article_title
-            if idx%200 ==0:
-                time.sleep(random.randint(0,8)) 
             yield scrapy.Request(url=response.urljoin(article_link), \
                                  callback=self.parse_article, \
                                  meta={'item':item})
