@@ -34,7 +34,8 @@ class ReutersSpider(scrapy.Spider):
     def parse_day(self, response):
         articles = response.xpath("//div/a[starts-with(@href, \
                               'http://www.reuters.com/article/')]")
-        for article in articles:
+#         for article in articles:
+        for idx, article in enumerate(articles):
             article_link = article.xpath("@href").extract_first()
             article_title = article.xpath("text()").extract_first()
             item = response.meta['item']
