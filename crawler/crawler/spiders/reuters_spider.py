@@ -1,6 +1,7 @@
 import scrapy
 import os
 import json
+import time
 
 class ReutersSpider(scrapy.Spider):
     name = "reuters"
@@ -31,11 +32,13 @@ class ReutersSpider(scrapy.Spider):
     def parse_day(self, response):
         articles = response.xpath("//div/a[starts-with(@href, \
                               'http://www.reuters.com/article/')]")
-        for article in articles:
+        for idx, article in enumerate(articles):
             article_link = article.xpath("@href").extract_first()
             article_title = article.xpath("text()").extract_first()
             item = response.meta['item']
             item['title'] = article_title
+            if idx%200 ==0:
+                time.sleep(random.randint(0,8)) 
             yield scrapy.Request(url=response.urljoin(article_link), \
                                  callback=self.parse_article, \
                                  meta={'item':item})
