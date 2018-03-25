@@ -110,9 +110,13 @@ class RotateUserAgentMiddleware(UserAgentMiddleware):
 
 class ProxyMiddleware(object):
 
-    proxyList = ['36.250.69.4:80', '58.18.52.168:3128', '58.253.238.243:80', '60.191.164.22:3128', '60.191.167.93:3128']
-    
+    #proxyList = ['36.250.69.4:80', '58.18.52.168:3128', '58.253.238.243:80', '60.191.164.22:3128', '60.191.167.93:3128']
+
     def process_request(self, request, spider):
+        proxyList = []
+        with open("ip.txt","r") as fin:
+            for line in fin:
+                proxyList.append(line.strip())
         # Set the location of the proxy
         pro_adr = random.choice(self.proxyList)
         print "USE PROXY -> "+pro_adr
