@@ -57,7 +57,7 @@ COOKIES_ENABLED = False
 #}
 DOWNLOADER_MIDDLEWARES = {  
         'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware' : None,  
-        'rotate_useragent.RotateUserAgentMiddleware' :400  
+        'crawler.rotate_useragent.RotateUserAgentMiddleware' :400  
     }  
 
 # Enable or disable extensions
