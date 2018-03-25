@@ -41,7 +41,7 @@ class ReutersSpider(scrapy.Spider):
             article_title = article.xpath("text()").extract_first()
             item = response.meta['item']
             item['title'] = article_title
-            if idx % 200 ==0:
+            if idx % 100 ==0:
                 time.sleep(random.randint(0,3))
             yield scrapy.Request(url=response.urljoin(article_link), \
                                  callback=self.parse_article, \
