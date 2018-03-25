@@ -64,6 +64,7 @@ class RotateUserAgentMiddleware(UserAgentMiddleware):
         ua = random.choice(self.user_agent_list)
         if ua:
             request.headers.setdefault('User-Agent', ua)
+            print ("USE User-Agent -> "+ua)
     #the default user_agent_list composes chrome,IE,firefox,Mozilla,opera,netscape
     #for more user agent strings,you can find it in http://www.useragentstring.com/pages/useragentstring.php
     user_agent_list = [
@@ -114,5 +115,5 @@ class ProxyMiddleware(object):
     def process_request(self, request, spider):
         # Set the location of the proxy
         pro_adr = random.choice(self.proxyList)
-        print "USE PROXY -> "+pro_adr
+        print ("USE PROXY -> "+pro_adr)
         request.meta['proxy'] = "http://"+ pro_adr
