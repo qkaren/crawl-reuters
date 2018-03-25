@@ -6,7 +6,7 @@
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-
+import random, base64
 
 class CrawlerSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -106,3 +106,14 @@ class RotateUserAgentMiddleware(UserAgentMiddleware):
 "Mozilla/5.0 (Linux; U; Android 2.2.1; en-ca; LG-P505R Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1"
        ]
 
+
+
+class ProxyMiddleware(object):
+
+    proxyList = ['36.250.69.4:80', '58.18.52.168:3128', '58.253.238.243:80', '60.191.164.22:3128', '60.191.167.93:3128']
+    
+    def process_request(self, request, spider):
+        # Set the location of the proxy
+        pro_adr = random.choice(self.proxyList)
+        print "USE PROXY -> "+pro_adr
+        request.meta['proxy'] = "http://"+ pro_adr
