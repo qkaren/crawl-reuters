@@ -55,12 +55,12 @@ COOKIES_ENABLED = False
 #DOWNLOADER_MIDDLEWARES = {
 #    'crawler.middlewares.MyCustomDownloaderMiddleware': 543,
 #}
-# DOWNLOADER_MIDDLEWARES = {  
-#     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware':None,  
-#     'crawler.middlewares.RotateUserAgentMiddleware':400,  
+DOWNLOADER_MIDDLEWARES = {  
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware':None,  
+    'crawler.middlewares.RotateUserAgentMiddleware':400,  
 #     'crawler.middlewares.ProxyMiddleware': 100,
 #     'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 110
-# }
+}
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
