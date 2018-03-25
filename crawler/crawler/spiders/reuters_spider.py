@@ -42,7 +42,7 @@ class ReutersSpider(scrapy.Spider):
             item = response.meta['item']
             item['title'] = article_title
             if idx % 100 ==0:
-                time.sleep(random.randint(0,3))
+                time.sleep(random.randint(0,6))
             yield scrapy.Request(url=response.urljoin(article_link), \
                                  callback=self.parse_article, \
                                  meta={'item':item})
