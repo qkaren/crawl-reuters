@@ -65,5 +65,5 @@ class RotateUserAgentMiddleware(UserAgentMiddleware):
 #         "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24"  
 #         "(KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24"  
 #        ] 
-    user_agent_list = 'Mozilla/5.0 (Linux; Android 4.1.1; Nexus 7 Build/JRO03D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166  Safari/535.19'
+    user_agent_list = ['Mozilla/5.0 (Linux; Android 4.1.1; Nexus 7 Build/JRO03D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166  Safari/535.19']
   
